@@ -25,4 +25,4 @@ spec:
             - while true; do /cuda-samples/vectorAdd; done
           resources:
             limits:
-              nvidia.com/gpu: 1
+              nvidia.com/mig-1g.10gb: 1
