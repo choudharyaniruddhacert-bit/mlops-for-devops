@@ -213,3 +213,4 @@ service-account*.json.venv-feast/
 .venv-mlflow/
 
 .venv-feast/
+.venv-evidently/

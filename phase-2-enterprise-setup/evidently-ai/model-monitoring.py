@@ -20,10 +20,10 @@ from evidently.sdk.panels import (
 )
 from evidently.ui.workspace import RemoteWorkspace
 
-EVIDENTLY_URL = "http://localhost:8000" 
+EVIDENTLY_URL = "http://localhost:8000"
 EVIDENTLY_SECRET = None
 
-PROJECT_ID = "019fbb5d-b414-700b-8840-0a55ba10f28f"
+PROJECT_ID = "01a186c6-5f7f-714b-b6c9-b9b783d30da2"
 
 
 FEATURES = [f"feature_{i}" for i in range(8)]
