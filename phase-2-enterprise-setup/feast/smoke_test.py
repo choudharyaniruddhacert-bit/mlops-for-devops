@@ -1,8 +1,10 @@
+import os
 import time
 import statistics
 import requests
 
-FEAST_ENDPOINT = "http://<NODE-IP-HERE>:30566"
+FEAST_ENDPOINT = "http://localhost:6566"
+HEADERS = {"Authorization": f"Bearer {os.environ['FEAST_TOKEN']}"}
 
 
 def fetch_features_with_latency(employee_ids, runs=50):
@@ -15,6 +17,7 @@ def fetch_features_with_latency(employee_ids, runs=50):
 
         response = requests.post(
             f"{FEAST_ENDPOINT}/get-online-features",
+            headers=HEADERS,
             json={
                 "features": [
                     "employee_features:age",

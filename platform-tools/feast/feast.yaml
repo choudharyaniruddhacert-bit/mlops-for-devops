@@ -10,6 +10,10 @@ stringData:
   sql: |
     path: postgresql+psycopg://feast:feast@postgres.feast.svc.cluster.local:5432/feast
     cache_ttl_seconds: 60
+    sqlalchemy_config_kwargs:
+      pool_pre_ping: true
+      connect_args:
+        prepare_threshold: null
 ---
 apiVersion: feast.dev/v1
 kind: FeatureStore

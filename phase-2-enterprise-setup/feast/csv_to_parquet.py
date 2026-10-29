@@ -36,11 +36,11 @@ def process_data():
     df["Attrition"] = df["Attrition"].map({"Left": 1, "Stayed": 0})
 
     # Ordinal mappings (Low → High)
-    rating_map = {"Low": 1, "Medium": 2, "High": 3}
+    rating_map = {"Low": 1, "Medium": 2, "High": 3, "Very High": 4}
     df["Job Satisfaction"] = df["Job Satisfaction"].map(rating_map)
     df["Employee Recognition"] = df["Employee Recognition"].map(rating_map)
 
-    performance_map = {"Low": 1, "Average": 2, "High": 3}
+    performance_map = {"Low": 1, "Below Average": 2, "Average": 3, "High": 4}
     df["Performance Rating"] = df["Performance Rating"].map(performance_map)
 
     balance_map = {"Poor": 1, "Fair": 2, "Good": 3, "Excellent": 4}
@@ -51,8 +51,8 @@ def process_data():
     education_map = {
         "High School": 1,
         "Associate Degree": 2,
-        "Bachelor's Degree": 3,
-        "Master's Degree": 4,
+        "Bachelor\u2019s Degree": 3,
+        "Master\u2019s Degree": 4,
         "PhD": 5
     }
     df["Education Level"] = df["Education Level"].map(education_map)
@@ -147,6 +147,11 @@ def process_data():
 
     df = df[feature_columns]
 
+    nulls = df[feature_columns].isnull().sum()
+    if nulls.any():
+        raise ValueError(f"Unmapped values found: {nulls[nulls > 0].to_dict()}")
+
+    
     # Save to parquet
     df.to_parquet(OUTPUT_PATH, index=False)
 
