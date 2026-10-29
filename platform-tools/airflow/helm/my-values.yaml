@@ -1,0 +1,23 @@
+executor: KubernetesExecutor          # every task runs as its own pod
+
+dags:
+  gitSync:
+    enabled: true                     # pull DAGs from GitHub
+    repo: https://github.com/choudharyaniruddhacert-bit/mlops-for-devops.git
+    branch: main
+    subPath: "phase-2-enterprise-setup/airflow/dags"   # only this folder
+    period: 60s                       # check for changes every 60s
+
+workers:
+  serviceAccount:
+    create: false
+    name: airflow-dvc-sa              # task pods use our SA → S3 via Pod Identity
+
+postgresql:
+  primary:
+    persistence:
+      storageClass: gp2               # Airflow's metadata DB on an EBS disk
+
+triggerer:
+  persistence:
+    storageClassName: gp2

@@ -1,0 +1,20 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: mlops-cluster
+  region: us-east-1
+
+managedNodeGroups:
+  - name: mlops-ng
+    instanceType: t3.medium     # 2 vCPU, 4 GB each, same as the author
+    desiredCapacity: 2
+    minSize: 2
+    maxSize: 3
+    volumeSize: 30
+
+addons:
+  - name: aws-ebs-csi-driver     # lets pods get EBS disks (Airflow's database needs one)
+  - name: eks-pod-identity-agent # lets pods assume IAM roles (S3 access without keys)
+
+addonsConfig:
+  autoApplyPodIdentityAssociations: true   # gives the EBS driver its own IAM role automatically

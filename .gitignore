@@ -209,4 +209,5 @@ temp/
 *.pfx
 secrets/
 credentials/
-service-account*.json
+service-account*.json.venv-feast/
+.venv-mlflow/
