@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mlflow-postgres-secret
+  namespace: mlflow
+stringData:
+  POSTGRES_DB: mlflow
+  POSTGRES_USER: mlflow
+  POSTGRES_PASSWORD: mlflow123
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mlflow-postgres
+  namespace: mlflow
+spec:
+  serviceName: mlflow-postgres-postgresql
+  replicas: 1
+  selector:
+    matchLabels: {app: mlflow-postgres}
+  template:
+    metadata:
+      labels: {app: mlflow-postgres}
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+          ports: [{containerPort: 5432}]
+          envFrom: [{secretRef: {name: mlflow-postgres-secret}}]
+          env: [{name: PGDATA, value: /var/lib/postgresql/data/pgdata}]
+          volumeMounts: [{name: data, mountPath: /var/lib/postgresql/data}]
+  volumeClaimTemplates:
+    - metadata: {name: data}
+      spec:
+        accessModes: [ReadWriteOnce]
+        resources: {requests: {storage: 5Gi}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mlflow-postgres-postgresql
+  namespace: mlflow
+spec:
+  selector: {app: mlflow-postgres}
+  ports: [{port: 5432, targetPort: 5432}]

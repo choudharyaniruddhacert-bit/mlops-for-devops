@@ -10,9 +10,9 @@ export AWS_PAGER=""
 # ==========================================
 ACTION="${1:-create}"
 
-REGION="us-west-2"
-CLUSTER_NAME="you-cluster-name"
-BUCKET_NAME="your-bucket-name"
+REGION="us-east-1"
+CLUSTER_NAME="mlops-cluster"
+BUCKET_NAME="mlops-mlflow-136468712936"
 
 POLICY_NAME="mlflow-s3-policy"
 ROLE_NAME="mlflow-pod-identity-role"

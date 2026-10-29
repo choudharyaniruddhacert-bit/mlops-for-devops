@@ -27,7 +27,7 @@ spec:
           value: "8080"
         - name: MLSERVER_GRPC_PORT
           value: "8081"
-        - name: MODEL_NAME
+        - name: MLSERVER_MODEL_NAME
           value: "{{.Name}}"
         - name: MLSERVER_MODEL_URI
           value: "/mnt/models"

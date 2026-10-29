@@ -3,10 +3,11 @@ import sys
 import mlflow
 from mlflow import MlflowClient
 
-MLFLOW_TRACKING_URI = "http://52.13.161.160:32287/"
+MLFLOW_TRACKING_URI = "http://localhost:5000/"
+
 MODEL_NAME = "employee-attrition-classifier"
 CHAMPION_ALIAS = "champion"
-RUN_ID = "8a557a5d7bf844febac4ec391b9777fb"  # set this to the run_id to register and promote
+RUN_ID = "7f7d7b843d38484fa4f3084255309fe2" # set this to the run_id to register and promote
 
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 

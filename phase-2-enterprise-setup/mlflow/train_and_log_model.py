@@ -10,7 +10,7 @@ from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_sc
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
-MLFLOW_TRACKING_URI = "http://52.13.161.160:32287/"
+MLFLOW_TRACKING_URI = "http://localhost:5000/"
 EXPERIMENT_NAME = "employee-attrition"
 DATA_PATH = "datasets/employee_attrition.csv"
 

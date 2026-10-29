@@ -11,4 +11,4 @@ spec:
         name: mlflow
       runtime: kserve-mlserver-mlflow-custom
       protocolVersion: v2
-      storageUri: "s3://dcube-mlflow-artifact-store/1/models/m-14109882a3bc405bb8caa035c92e4919/artifacts"
+      storageUri: "s3://mlops-mlflow-136468712936/1/models/m-6defa986858e4373b4cf9d42b6ec003e/artifacts"
