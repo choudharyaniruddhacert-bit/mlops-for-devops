@@ -211,3 +211,5 @@ secrets/
 credentials/
 service-account*.json.venv-feast/
 .venv-mlflow/
+
+.venv-feast/
